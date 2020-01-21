@@ -13,7 +13,7 @@ exports.up = async knex => createTableIfNotExists(knex, 'users', table => {
     .notNullable()
 
   table
-    .string('password-hash')
+    .string('passwordHash')
     .notNullable()
 
   table
