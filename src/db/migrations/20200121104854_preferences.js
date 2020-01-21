@@ -5,6 +5,8 @@ exports.up = async knex => createTableIfNotExists(knex, 'preferences', table => 
     .uuid('userId')
     .notNullable()
     .references('users.id')
+    .onDelete('CASCADE')
+    .onUpdate('CASCADE')
 
   table
     .boolean('searchBar')
