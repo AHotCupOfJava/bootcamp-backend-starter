@@ -16,6 +16,8 @@ module.exports = gql`
   type User {
     id: ID!
     email: String!
+    username: String!
+    firstName: String
     createdAt: String!
     updatedAt: String!
   }
@@ -40,6 +42,7 @@ module.exports = gql`
 
   input RegisterInput {
     email: String!
+    username: String!
     password: String!
   }
   input NewPrefsInput{

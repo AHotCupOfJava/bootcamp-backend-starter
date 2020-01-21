@@ -10,12 +10,12 @@ const login = async (obj, { email, password }) => {
     email,
   })
   if (!user) {
-    throw new UserInputError('Invalid email or password')
+    throw new UserInputError('Invalid email')
   }
 
-  const validPassword = await comparePassword(password, user.password)
+  const validPassword = await comparePassword(password, user.passwordHash)
   if (!validPassword) {
-    throw new UserInputError('Invalid email or password')
+    throw new UserInputError('Invalid password')
   }
 
 
@@ -28,16 +28,22 @@ const login = async (obj, { email, password }) => {
   return { user, token }
 }
 
-const register = async (obj, { input: { email, password } }) => {
+const register = async (obj, { input: { email, username, password } }) => {
   const emailExists = await User.query().findOne({ email })
   if (emailExists) {
     throw new UserInputError('Email is already in use')
   }
 
-  const passwordHash = await hashPassword(password)
+  const usernameExists = await User.query().findOne({ username })
+  if (usernameExists) {
+    throw new UserInputError('Username is already in use')
+  }
+
+  const passHash = await hashPassword(password)
   const user = await User.query().insertAndFetch({
     email,
-    password: passwordHash,
+    username,
+    passwordHash: passHash,
   })
 
   // If successful registration, set authentication information
