@@ -1,4 +1,6 @@
+const { HasManyRelation } = require('objection')
 const BaseModel = require('./BaseModel')
+const Preference = require('./Preference')
 
 class User extends BaseModel {
   static get tableName() {
@@ -6,7 +8,16 @@ class User extends BaseModel {
   }
 
   static get relationMappings() {
-    return {}
+    return {
+      preferences: {
+        relation: HasManyRelation,
+        modelClass: Preference,
+        join: {
+          from: 'users.id',
+          to: 'preferences.userId',
+        },
+      },
+    }
   }
 }
 
