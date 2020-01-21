@@ -44,6 +44,8 @@ module.exports = gql`
     email: String!
     username: String!
     password: String!
+    firstName: String
+    lastName: String
   }
   input NewPrefsInput{
     searchBar: Boolean
