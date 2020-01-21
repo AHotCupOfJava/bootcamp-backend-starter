@@ -9,7 +9,7 @@ module.exports = gql`
 
   type Query {
     welcome: String!
-    getViewer: User!
+    getViewer: UserInfo!
 
   }
 
@@ -18,6 +18,19 @@ module.exports = gql`
     email: String!
     createdAt: String!
     updatedAt: String!
+  }
+
+  type Preferences {
+    searchBar: Boolean!
+    weatherCur: Boolean!
+    greeting: Boolean!
+  }
+
+  type UserInfo {
+    username: String!
+    firstName: String
+    lastName: String
+    prefs: Preferences!
   }
 
   type AuthReturn {
@@ -30,8 +43,8 @@ module.exports = gql`
     password: String!
   }
   input NewPrefsInput{
-    searchBar: Boolean!
-    weatherCur: Boolean!
-    greeting: Boolean!
+    searchBar: Boolean
+    weatherCur: Boolean
+    greeting: Boolean
   }
 `
