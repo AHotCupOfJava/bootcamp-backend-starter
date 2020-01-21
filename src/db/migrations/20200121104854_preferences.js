@@ -5,6 +5,8 @@ exports.up = async knex => createTableIfNotExists(knex, 'preferences', table => 
     .uuid('userId')
     .notNullable()
     .references('users.id')
+    .onDelete('CASCADE')
+    .onUpdate('CASCADE')
 
   table
     .boolean('searchBar')
@@ -25,4 +27,4 @@ exports.up = async knex => createTableIfNotExists(knex, 'preferences', table => 
   table.timestamp('updatedAt').defaultTo(knex.fn.now())
 })
 
-exports.down = async knex => knex.schema.dropTableIfExists('users')
+exports.down = async knex => knex.schema.dropTableIfExists('preferences')
