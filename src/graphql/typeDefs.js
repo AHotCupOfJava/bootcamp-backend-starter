@@ -4,10 +4,13 @@ module.exports = gql`
   type Mutation {
     login(email: String!, password: String!): AuthReturn!
     register(input: RegisterInput!): AuthReturn!
+    updatePreferences(input: NewPrefsInput!): Preferences!
   }
 
   type Query {
     welcome: String!
+    getViewer: User!
+
   }
 
   type User {
@@ -25,5 +28,10 @@ module.exports = gql`
   input RegisterInput {
     email: String!
     password: String!
+  }
+  input NewPrefsInput{
+    searchBar: Boolean!
+    weatherCur: Boolean!
+    greeting: Boolean!
   }
 `
