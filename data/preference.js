@@ -11,9 +11,15 @@ casual.define('preference', ({ userId }) => ({
 
 
 const preferenceData = []
+const used = []
 
 for (let i = 0; i < 20; ++i) {
-  const userId = casual.random_element(userData).id
+  let userId = casual.random_element(userData).id
+  do {
+    userId = casual.random_element(userData).id
+  } while (used.includes(userId))
+  used.push(userId)
+
   preferenceData.push(casual.preference({ userId }))
 }
 

@@ -6,10 +6,11 @@ const getViewer = async (obj, args, { user }) => {
     return 'Unauthorized'
   }
 
-  const thisUser = await User.query().select('username', 'firstName', 'lastName').findById(user.id)
-  const prefs = await Preference.query().where('userId', user.id)
+  const thisUser = await User.query().findById(user.id)
+  const prefs = await Preference.query().findOne({ userId: user.id })
 
   const view = { ...thisUser, prefs }
+
   return view
 }
 

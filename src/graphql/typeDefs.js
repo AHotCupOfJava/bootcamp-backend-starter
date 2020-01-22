@@ -32,7 +32,7 @@ module.exports = gql`
     username: String!
     firstName: String
     lastName: String
-    prefs: Preferences!
+    prefs: Preferences
   }
 
   type AuthReturn {
