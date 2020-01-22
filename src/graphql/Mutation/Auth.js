@@ -1,5 +1,6 @@
 const { UserInputError } = require('apollo-server-express')
 const User = require('../../models/User')
+const Preference = require('../../models/Preference')
 const {
   hashPassword, comparePassword, createToken,
 } = require('../../lib/auth')
@@ -51,6 +52,13 @@ const register = async (obj, {
     lastName,
     passwordHash: passHash,
   })
+
+  await Preference.query().insert({
+    userId: user.id,
+    searchBar: true,
+    weatherCur: true,
+    greeting: true,
+  }).returning('*')
 
   // If successful registration, set authentication information
   const payload = {
