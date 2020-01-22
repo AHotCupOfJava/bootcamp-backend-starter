@@ -28,7 +28,11 @@ const login = async (obj, { email, password }) => {
   return { user, token }
 }
 
-const register = async (obj, { input: { email, username, password } }) => {
+const register = async (obj, {
+  input: {
+    email, username, firstName, lastName, password,
+  },
+}) => {
   const emailExists = await User.query().findOne({ email })
   if (emailExists) {
     throw new UserInputError('Email is already in use')
@@ -43,6 +47,8 @@ const register = async (obj, { input: { email, username, password } }) => {
   const user = await User.query().insertAndFetch({
     email,
     username,
+    firstName,
+    lastName,
     passwordHash: passHash,
   })
 
