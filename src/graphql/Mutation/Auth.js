@@ -7,6 +7,10 @@ const {
 
 
 const login = async (obj, { email, password }) => {
+  if (!email || !password) {
+    throw new UserInputError('Must provide email and password')
+  }
+
   const user = await User.query().findOne({
     email,
   })
@@ -34,6 +38,10 @@ const register = async (obj, {
     email, username, firstName, lastName, password,
   },
 }) => {
+  if (!email || !username || !password) {
+    throw new UserInputError('Must provide email, username, and password')
+  }
+
   const emailExists = await User.query().findOne({ email })
   if (emailExists) {
     throw new UserInputError('Email is already in use')

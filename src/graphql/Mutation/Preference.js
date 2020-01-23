@@ -6,7 +6,7 @@ const updatePreferences = async (obj, { input }, { user }) => {
   }
 
   const preference = await Preference.query().patch(input).where('userId', user.id).returning('*')
-  return preference
+  return preference[0]
 }
 
 const resolver = {
