@@ -51,6 +51,7 @@ module.exports = gql`
     searchBar: Boolean
     weatherCur: Boolean
     greeting: Boolean
+    orientation: Orientation
   }
 
   enum Orientation{
