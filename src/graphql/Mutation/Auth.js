@@ -66,6 +66,7 @@ const register = async (obj, {
     searchBar: true,
     weatherCur: true,
     greeting: true,
+    orientation: 'CENTER',
   }).returning('*')
 
   // If successful registration, set authentication information

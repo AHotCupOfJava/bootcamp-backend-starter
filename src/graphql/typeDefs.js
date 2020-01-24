@@ -10,7 +10,6 @@ module.exports = gql`
   type Query {
     welcome: String!
     getViewer: UserInfo!
-
   }
 
   type User {
@@ -26,13 +25,14 @@ module.exports = gql`
     searchBar: Boolean!
     weatherCur: Boolean!
     greeting: Boolean!
+    orientation: Orientation!
   }
 
   type UserInfo {
     username: String!
     firstName: String
     lastName: String
-    prefs: Preferences
+    prefs: Preferences!
   }
 
   type AuthReturn {
@@ -52,4 +52,11 @@ module.exports = gql`
     weatherCur: Boolean
     greeting: Boolean
   }
+
+  enum Orientation{
+    CENTER
+    FLEX_START
+    FLEX_END
+  }
+
 `

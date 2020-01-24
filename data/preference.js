@@ -7,7 +7,7 @@ casual.define('preference', ({ userId }) => ({
   searchBar: casual.boolean,
   weatherCur: casual.boolean,
   greeting: casual.boolean,
-  orientation: casual.random_element(['CENTER', 'FLEX-START', 'FLEX-END']),
+  orientation: casual.random_element(['CENTER', 'FLEX_START', 'FLEX_END']),
 }))
 
 
