@@ -23,6 +23,7 @@ exports.up = async knex => createTableIfNotExists(knex, 'preferences', table => 
     .boolean('greeting')
     .notNullable()
     .defaultTo(true)
+  table.enum('orientation', ['CENTER', 'FLEX-START', 'FLEX-END']).notNullable()
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())
   table.timestamp('updatedAt').defaultTo(knex.fn.now())
